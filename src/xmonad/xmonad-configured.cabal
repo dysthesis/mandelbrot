@@ -11,16 +11,8 @@ cabal-version: >= 1.10
 
 library
   exposed-modules:
-    Defaults
-    EventHandling
-    Help
-    KeyBindings
-    Layout
-    LogHook
-    MouseBindings
-    StartupHook
-    WindowRules
-    WindowState
+	  Config
+		Utils
   hs-source-dirs: lib
   ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
