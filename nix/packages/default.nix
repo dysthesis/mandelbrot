@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: let
+  inherit (pkgs) linkFarmFromDrvs;
   inherit (pkgs.haskellPackages) callPackage;
   inherit
     (pkgs.haskell.lib)
@@ -63,4 +64,5 @@
 in {
   xmonad = addFontConfig xmonad "xmonad";
   xmobar = addFontConfig xmobar "xmobar";
+  default = linkFarmFromDrvs "all" [xmonad xmobar];
 }
