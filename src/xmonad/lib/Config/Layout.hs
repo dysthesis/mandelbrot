@@ -9,7 +9,7 @@ import XMonad.Layout.BinarySpacePartition (ResizeDirectional (ExpandTowards, Shr
 import XMonad.Layout.BoringWindows (boringWindows)
 import XMonad.Layout.MultiToggle (EOT (EOT), mkToggle, (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (NBFULL, NOBORDERS))
-import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.NoBorders (Ambiguity (Screen), lessBorders)
 import XMonad.Layout.Renamed (Rename (Replace), renamed)
 import XMonad.Layout.Renamed qualified as XLR
 import XMonad.Layout.Simplest (Simplest (Simplest))
@@ -51,7 +51,7 @@ myLayout =
     {-- Here are some custom layouts --}
     tabs = tabbed shrinkText myTabConfig
     tiled =
-      smartBorders $
+      lessBorders Screen $
         windowNavigation $ -- simplifies window navigation keybindings
         -- simplifies window navigation keybindings
           addTabs shrinkText myTabConfig $ -- add tabbed sublayout
@@ -62,7 +62,7 @@ myLayout =
                 delta -- define how much the ratio of window sizes can be incremented each time
                 ratio -- define the initial ratio of window sizes
     threeCol =
-      smartBorders $
+      lessBorders Screen $
         addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
         -- simplifies window navigation keybindings
           boringWindows $ -- skips navigation for non-visible windws
@@ -72,17 +72,19 @@ myLayout =
               ratio -- define the initial ratio of window sizes
     bsp =
       renamed [XLR.Replace "BSP"] $
-        smartBorders $
+        lessBorders Screen $
           windowNavigation $
             addTabs shrinkText myTabConfig $
-              subLayout [] tabs $
+              subLayout
+                []
+                tabs
                 emptyBSP
     monocle =
       renamed [Replace "monocle"] $
-        smartBorders $
+        lessBorders Screen $
           windowNavigation $
             addTabs shrinkText myTabConfig $
-              subLayout [] (smartBorders Simplest) Full
+              subLayout [] (lessBorders Screen Simplest) Full
 
     {-- and here are some general configurations for all of these layouts. --}
     nmaster = 1 -- Default number of windows in the master pane
