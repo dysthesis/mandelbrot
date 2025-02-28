@@ -1,6 +1,7 @@
 name:          xmonad-configured
 version:       1.0
 synopsis:      My XMonad setup
+license = "unknown";
 author:        Dysthesis <antheoraviel@protonmail.com>
 maintainer:    Dysthesis <antheoraviel@protonmail.com>
 category:      Graphics

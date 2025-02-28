@@ -16,5 +16,6 @@ mkDerivation {
   executableHaskellDepends = [base xmobar];
   doHaddock = false;
   description = "My XMobar config";
+  license = "unknown";
   mainProgram = "xmobar";
 }
