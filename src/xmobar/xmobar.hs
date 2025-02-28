@@ -3,7 +3,7 @@ import Xmobar
 config :: Config
 config =
   defaultConfig
-    { font = "JBMono Nerd Font 9",
+    { font = "JBMono Nerd Font 10",
       allDesktops = True,
       bgColor = "#000000",
       fgColor = "#ffffff",
