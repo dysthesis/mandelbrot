@@ -101,7 +101,7 @@ scratchpadList =
     Scratchpad
       { name = "notes",
         prefix = 'n',
-        category = Term (Just "sh -c 'tmux attach-session -t notes || tmux new-session -s notes -c ~/Documents/Notes/'")
+        category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/'")
       },
     Scratchpad
       { name = "signal",
