@@ -18,7 +18,7 @@ library
 	  Config.Prompt
 	  Config.Scratchpads
 	  Config.Search
-	  Config.Xmobar
+	  Config.XMobar
 		Utils.Taskwarrior
   hs-source-dirs: lib
   ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
