@@ -11,8 +11,15 @@ cabal-version: >= 1.10
 
 library
   exposed-modules:
-	  Config
-		Utils
+	  Config.Autostart
+	  Config.Keybinds
+	  Config.Layout
+	  Config.ManageHook
+	  Config.Prompt
+	  Config.Scratchpads
+	  Config.Search
+	  Config.Xmobar
+		Utils.Taskwarrior
   hs-source-dirs: lib
   ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
