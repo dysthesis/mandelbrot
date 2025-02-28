@@ -16,29 +16,29 @@ import XMonad.Operations (kill)
  - provided by XMonad.Util.EZConfig to provide a simpler syntax --}
 
 data DefaultPrograms = DefaultPrograms
-  { term :: String,
-    launcher :: String,
-    editor :: String,
-    screenshot :: String
-  }
+    { term :: String
+    , launcher :: String
+    , editor :: String
+    , screenshot :: String
+    }
 
 myKeys :: DefaultPrograms -> [(String, X ())]
 myKeys defaults =
-  [ ("M-r", spawn (launcher defaults)),
-    ("M-<Return>", spawn (term defaults)),
-    ("M-q", kill),
-    ("M-n", nextScreen),
-    ("M-S-n", shiftNextScreen),
-    ("M-t f", sendMessage $ Toggle NBFULL),
-    ("<XF86AudioRaiseVolume>", spawn increaseVolCmd),
-    ("<XF86AudioLowerVolume>", spawn decreaseVolCmd),
-    ("M-p", spawn (screenshot defaults))
-  ]
-    -- Append search engines to the keybinding list
-    ++ myLayoutKeybinds
-    ++ mySearchKebinds
-    ++ myScratchpadKeybinds
-    ++ taskwarriorKeybinds
+    [ ("M-r", spawn (launcher defaults))
+    , ("M-<Return>", spawn (term defaults))
+    , ("M-q", kill)
+    , ("M-n", nextScreen)
+    , ("M-S-n", shiftNextScreen)
+    , ("M-t f", sendMessage $ Toggle NBFULL)
+    , ("<XF86AudioRaiseVolume>", spawn increaseVolCmd)
+    , ("<XF86AudioLowerVolume>", spawn decreaseVolCmd)
+    , ("M-p", spawn (screenshot defaults))
+    ]
+        -- Append search engines to the keybinding list
+        ++ myLayoutKeybinds
+        ++ mySearchKebinds
+        ++ myScratchpadKeybinds
+        ++ taskwarriorKeybinds
   where
     audioDelta = 5 -- configures how much each command should change the volume by
     increaseVolCmd = "wpctl set-volume @DEFAULT_AUDIO_SINK@ " ++ show audioDelta ++ "%+"

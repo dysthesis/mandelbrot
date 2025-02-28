@@ -15,12 +15,12 @@ myStartupHook = do
     -- Notification daemon
     spawnOnce "dunst"
 
-    -- Clipboard manager
+-- Clipboard manager
 
-    -- Screenshot util
+-- Screenshot util
 
-    -- Auto mount attached drives
+-- Auto mount attached drives
 
-    -- Polkit agent
+-- Polkit agent
 
-    -- Set the wallpaper
+-- Set the wallpaper

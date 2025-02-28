@@ -36,36 +36,36 @@ myFocusColor = "#FFFFFF"
 
 defaultPrograms :: DefaultPrograms
 defaultPrograms =
-  DefaultPrograms
-    { term = "st",
-      launcher = "dmenu_run",
-      editor = "nvim",
-      screenshot = "flameshot gui"
-    }
+    DefaultPrograms
+        { term = "st"
+        , launcher = "dmenu_run"
+        , editor = "nvim"
+        , screenshot = "flameshot gui"
+        }
 
 myHandleEventHook = windowedFullscreenFixEventHook <> swallowEventHook (className =? "st-256color" <||> className =? "Alacritty") (return True)
 
 myConfig =
-  def
-    { modMask = myModMask,
-      terminal = term defaultPrograms,
-      borderWidth = myBorderWidth,
-      normalBorderColor = myNormColor,
-      focusedBorderColor = myFocusColor,
-      layoutHook = myLayout,
-      -- , workspaces = myWorkspaces
-      startupHook = myStartupHook,
-      manageHook = myManageHook,
-      handleEventHook = myHandleEventHook
-    }
-    `additionalKeysP` myKeys defaultPrograms
+    def
+        { modMask = myModMask
+        , terminal = term defaultPrograms
+        , borderWidth = myBorderWidth
+        , normalBorderColor = myNormColor
+        , focusedBorderColor = myFocusColor
+        , layoutHook = myLayout
+        , -- , workspaces = myWorkspaces
+          startupHook = myStartupHook
+        , manageHook = myManageHook
+        , handleEventHook = myHandleEventHook
+        }
+        `additionalKeysP` myKeys defaultPrograms
 
 main :: IO ()
 main =
-  do
-    xmonad
-    . docks
-    . ewmhFullscreen
-    . ewmh
-    . fullscreenSupport
-    $ xmobarProp myConfig
+    do
+        xmonad
+        . docks
+        . ewmhFullscreen
+        . ewmh
+        . fullscreenSupport
+        $ xmobarProp myConfig
