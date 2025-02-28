@@ -25,18 +25,18 @@ myXmobarPP =
       ppVisible = white,
       ppWsSep = "  ",
       ppTitleSanitize = xmobarStrip . shorten 30, -- `shorten` defines the max length
-      ppTitle = wrap "\xf0570 " "",
-      ppLayout =
-        white
-          . ( \case
-                "Spacing Tabbed Tall" -> "<icon=tiled.xpm/>"
-                "Mirror Spacing Tabbed Tall" -> "<icon=mirrortiled.xpm/>"
-                "Full" -> "<icon=full.xpm/>"
-                "monocle" -> "<icon=monocle.xpm/>"
-                "Spacing ThreeCol" -> "<icon=threecol.xpm/>"
-                "Tabbed Simplest" -> "<icon=tabbed.xpm/>"
-                "BSP" -> "<icon=bsp.xpm/>"
-            )
+      ppTitle = wrap "\xf0570 " ""
+      -- ppLayout =
+      --   white
+      --     . ( \case
+      --           "Spacing Tabbed Tall" -> "<icon=tiled.xpm/>"
+      --           "Mirror Spacing Tabbed Tall" -> "<icon=mirrortiled.xpm/>"
+      --           "Full" -> "<icon=full.xpm/>"
+      --           "monocle" -> "<icon=monocle.xpm/>"
+      --           "Spacing ThreeCol" -> "<icon=threecol.xpm/>"
+      --           "Tabbed Simplest" -> "<icon=tabbed.xpm/>"
+      --           "BSP" -> "<icon=bsp.xpm/>"
+      --       )
     }
   where
     grey = xmobarColor "#6c7086" ""
