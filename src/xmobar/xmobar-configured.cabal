@@ -12,4 +12,5 @@ executable xmobar-configured
   ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
     , xmobar
+    , text
   default-language: Haskell2010

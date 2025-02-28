@@ -4,6 +4,7 @@
   extra,
   process,
   xmobar,
+  text,
   srcDir,
 }:
 mkDerivation {
@@ -12,7 +13,7 @@ mkDerivation {
   src = "${srcDir}/xmobar";
   isLibrary = false;
   isExecutable = true;
-  libraryHaskellDepends = [base extra process xmobar];
+  libraryHaskellDepends = [base extra process xmobar text];
   executableHaskellDepends = [base xmobar];
   doHaddock = false;
   description = "My XMobar config";
