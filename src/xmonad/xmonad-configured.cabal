@@ -1,7 +1,6 @@
 name:          xmonad-configured
 version:       1.0
 synopsis:      My XMonad setup
-license = "unknown";
 author:        Dysthesis <antheoraviel@protonmail.com>
 maintainer:    Dysthesis <antheoraviel@protonmail.com>
 category:      Graphics
@@ -10,14 +9,16 @@ cabal-version: >= 1.10
 
 library
   exposed-modules:
-	  Config.Autostart
-	  Config.Keybinds
-	  Config.Layout
-	  Config.ManageHook
-	  Config.Prompt
-	  Config.Scratchpads
-	  Config.Search
-	  Config.XMobar
+    Defaults
+    EventHandling
+    Help
+    KeyBindings
+    Layout
+    LogHook
+    MouseBindings
+    StartupHook
+    WindowRules
+    WindowState
   hs-source-dirs: lib
   ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base

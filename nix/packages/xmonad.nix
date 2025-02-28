@@ -23,6 +23,6 @@ mkDerivation {
   ];
   executableHaskellDepends = [base xmonad xmonad-contrib];
   description = "My XMonad setup";
-  license = lib.licenses.gpl2Only;
+  license = "unknown";
   mainProgram = "xmonad";
 }
