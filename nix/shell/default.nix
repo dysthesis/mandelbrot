@@ -8,5 +8,6 @@ pkgs.mkShell {
     deadnix
     haskell-language-server
     fourmolu
+    ghc
   ];
 }

@@ -32,7 +32,8 @@
       "x86_64-darwin"
       "aarch64-darwin"
     ];
-    forAllSystems = lib.babel.forAllSystems {inherit systems;};
+    overlays = [(import ./nix/overlay {})];
+    forAllSystems = lib.babel.forAllSystems {inherit systems overlays;};
 
     treefmt = forAllSystems (pkgs: treefmt-nix.lib.evalModule pkgs ./nix/formatters);
   in
@@ -45,6 +46,6 @@
       checks = pkgs: {
         formatting = treefmt.${pkgs.system}.config.build.check self;
       };
-      packages = pkgs: import ./nix/packages {inherit pkgs self lib;};
+      packages = pkgs: import ./nix/packages {inherit pkgs;};
     };
 }
