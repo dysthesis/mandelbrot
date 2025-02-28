@@ -56,8 +56,8 @@ with final.lib; let
               '';
           });
       in {
-        xmonadrc = addFontConfig xmonad;
-        xmobar-app = addFontConfig xmobar;
+        xmonad = addFontConfig xmonad;
+        xmobar = addFontConfig xmobar;
       }
     );
   });
