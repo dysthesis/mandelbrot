@@ -16,16 +16,11 @@ myStartupHook = do
     spawnOnce "dunst"
 
     -- Clipboard manager
-    spawnOnce "parcellite"
 
     -- Screenshot util
-    spawnOnce "flameshot"
 
     -- Auto mount attached drives
-    spawnOnce "udiskie"
 
     -- Polkit agent
-    spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
     -- Set the wallpaper
-    spawn "hsetroot -cover ~/.config/wallpaper.png"
