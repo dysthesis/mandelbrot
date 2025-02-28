@@ -13,7 +13,6 @@ import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Renamed (Rename (Replace), renamed)
 import XMonad.Layout.Renamed qualified as XLR
 import XMonad.Layout.Simplest (Simplest (Simplest))
-import XMonad.Layout.Spacing (spacing)
 import XMonad.Layout.SubLayouts (GroupMsg (UnMerge), pullGroup, subLayout)
 import XMonad.Layout.Tabbed (Theme (activeBorderColor, activeBorderWidth, activeColor, activeTextColor, decoHeight, decoWidth, fontName, inactiveBorderColor, inactiveBorderWidth, inactiveColor, inactiveTextColor), addTabs, def, shrinkText, tabbed)
 import XMonad.Layout.ThreeColumns (ThreeCol (ThreeColMid))
@@ -52,36 +51,32 @@ myLayout =
     {-- Here are some custom layouts --}
     tabs = tabbed shrinkText myTabConfig
     tiled =
-      spacing gaps $ -- add gaps to the layout
       -- add gaps to the layout
-        windowNavigation $ -- simplifies window navigation keybindings
-        -- simplifies window navigation keybindings
-          addTabs shrinkText myTabConfig $ -- add tabbed sublayout
-          -- add tabbed sublayout
-            boringWindows $ -- skips navigation for non-visible windws
-              Tall -- use the Tall layout as the base for this custom layout
-                nmaster -- define how many windows can be in the master stack
-                delta -- define how much the ratio of window sizes can be incremented each time
-                ratio -- define the initial ratio of window sizes
-    threeCol =
-      spacing gaps $ -- add gaps to the layout
-      -- add gaps to the layout
-        addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
-        -- simplifies window navigation keybindings
+      windowNavigation $ -- simplifies window navigation keybindings
+      -- simplifies window navigation keybindings
+        addTabs shrinkText myTabConfig $ -- add tabbed sublayout
+        -- add tabbed sublayout
           boringWindows $ -- skips navigation for non-visible windws
-            ThreeColMid -- use the Tall layout as the base for this custom layout
+            Tall -- use the Tall layout as the base for this custom layout
               nmaster -- define how many windows can be in the master stack
               delta -- define how much the ratio of window sizes can be incremented each time
               ratio -- define the initial ratio of window sizes
+    threeCol =
+      -- add gaps to the layout
+      addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
+      -- simplifies window navigation keybindings
+        boringWindows $ -- skips navigation for non-visible windws
+          ThreeColMid -- use the Tall layout as the base for this custom layout
+            nmaster -- define how many windows can be in the master stack
+            delta -- define how much the ratio of window sizes can be incremented each time
+            ratio -- define the initial ratio of window sizes
     bsp =
       renamed [XLR.Replace "BSP"] $
         smartBorders $
           windowNavigation $
             addTabs shrinkText myTabConfig $
               subLayout [] tabs $
-                spacing
-                  gaps
-                  emptyBSP
+                emptyBSP
     monocle =
       renamed [Replace "monocle"] $
         smartBorders $
@@ -93,7 +88,6 @@ myLayout =
     nmaster = 1 -- Default number of windows in the master pane
     ratio = 1 / 2 -- Default proportion of screen occupied by master pane
     delta = 1 / 100 -- Percent of screen to increment by when resizing panes
-    gaps = 8 -- Size of window gaps
 
 -- Helper function to switch to a certain layout.
 switchToLayout :: String -> X ()

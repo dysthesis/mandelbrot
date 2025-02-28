@@ -20,7 +20,7 @@
     nixpkgs,
     treefmt-nix,
     ...
-  }: let
+  } @ inputs: let
     inherit (builtins) mapAttrs;
     inherit (babel) mkLib;
     lib = mkLib nixpkgs;
@@ -45,6 +45,6 @@
       checks = pkgs: {
         formatting = treefmt.${pkgs.system}.config.build.check self;
       };
-      packages = pkgs: import ./nix/packages {inherit pkgs;};
+      packages = pkgs: import ./nix/packages {inherit pkgs inputs;};
     };
 }

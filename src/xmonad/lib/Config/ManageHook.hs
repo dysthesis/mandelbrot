@@ -9,32 +9,31 @@ import XMonad.ManageHook (className, composeAll, doFloat, doShift, stringPropert
 {-- MANAGE HOOK --}
 myManageHook :: ManageHook
 myManageHook =
-    composeAll
-        [ isDialog --> doCenterFloat
-        , isFileChooserDialog --> doCenterFloat
-        , isPopup --> doCenterFloat
-        , isGtk4Modal --> doCenterFloat
-        , isGtk4Dialog --> doCenterFloat
-        , isSplash --> doCenterFloat
-        , isFullscreen --> doFullFloat
-        , className =? "confirm" --> doFloat
-        , className =? "file_progress" --> doFloat
-        , className =? "dialog" --> doFloat
-        , className =? "download" --> doFloat
-        , className =? "error" --> doFloat
-        , className =? "firefox" --> doShift "1"
-        , className =? "FreeTube" --> doShift "3"
-        , className =? "mpv" --> doShift "3"
-        , className =? "vesktop" --> doShift "2"
-        , className =? "Element" --> doShift "2"
-        , className =? "Zathura" --> doShift "4"
-        , className =? "thunderbird" --> doShift "5"
-        , -- , className =? "virt-manager" --> doShift "6"
-          className =? "Virt-manager" --> doShift "6"
-        , className =? "steam" --> doShift "7"
-        ]
-        <+> myScratchpadManageHook
-        <+> manageDocks
+  composeAll
+    [ isDialog --> doCenterFloat,
+      isFileChooserDialog --> doCenterFloat,
+      isPopup --> doCenterFloat,
+      isGtk4Modal --> doCenterFloat,
+      isGtk4Dialog --> doCenterFloat,
+      isSplash --> doCenterFloat,
+      isFullscreen --> doFullFloat,
+      className =? "confirm" --> doFloat,
+      className =? "file_progress" --> doFloat,
+      className =? "dialog" --> doFloat,
+      className =? "download" --> doFloat,
+      className =? "error" --> doFloat,
+      className =? "zen" --> doShift "1",
+      className =? "FreeTube" --> doShift "4",
+      className =? "mpv" --> doShift "4",
+      className =? "vesktop" --> doShift "3",
+      className =? "Element" --> doShift "3",
+      className =? "thunderbird" --> doShift "5",
+      -- , className =? "virt-manager" --> doShift "6"
+      className =? "Virt-manager" --> doShift "6",
+      className =? "steam" --> doShift "7"
+    ]
+    <+> myScratchpadManageHook
+    <+> manageDocks
   where
     isRole = stringProperty "WM_WINDOW_ROLE"
     isFileChooserDialog = isRole =? "GtkFileChooserDialog"

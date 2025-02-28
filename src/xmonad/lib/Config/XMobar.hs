@@ -14,7 +14,7 @@ import XMonad.Layout.LayoutModifier (ModifiedLayout)
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 
 xmobarProp :: (LayoutClass l Window) => XConfig l -> XConfig (ModifiedLayout AvoidStruts l)
-xmobarProp = withEasySB (statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobar.hs" (pure (filterOutWsPP [scratchpadWorkspaceTag] myXmobarPP))) toggleStrutsKey
+xmobarProp = withEasySB (statusBarProp "xmobar-configured -x 0 ~/.config/xmobar/xmobar.hs" (pure (filterOutWsPP [scratchpadWorkspaceTag] myXmobarPP))) toggleStrutsKey
   where
     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
     toggleStrutsKey XConfig {modMask = m} = (m, xK_b)

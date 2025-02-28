@@ -94,19 +94,14 @@ scratchpadList =
         category = Term (Just "taskwarrior-tui")
       },
     Scratchpad
-      { name = "fm",
-        prefix = 'f',
-        category = Term (Just "yazi")
+      { name = "music",
+        prefix = 'm',
+        category = Term (Just "spotify_player")
       },
     Scratchpad
       { name = "notes",
         prefix = 'n',
         category = Term (Just "sh -c 'tmux attach-session -t notes || tmux new-session -s notes -c ~/Documents/Notes/'")
-      },
-    Scratchpad
-      { name = "khal",
-        prefix = 'c',
-        category = Term (Just "ikhal")
       },
     Scratchpad
       { name = "signal",

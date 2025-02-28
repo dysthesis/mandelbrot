@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   inherit (pkgs.haskellPackages) callPackage;
   inherit
     (pkgs.haskell.lib)
@@ -53,7 +57,7 @@
         old.installPhase
         + ''
           wrapProgram $out/bin/${name}-configured \
-            --prefix FONTCONFIG_FILE : ${pkgs.makeFontsConf {fontDirectories = [pkgs.nerd-fonts.jetbrains-mono];}}
+            --prefix FONTCONFIG_FILE : ${pkgs.makeFontsConf {fontDirectories = [inputs.babel.packages.${pkgs.system}.jbcustom-nf];}}
         '';
     });
 in {

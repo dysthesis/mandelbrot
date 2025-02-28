@@ -3,7 +3,7 @@ import Xmobar
 config :: Config
 config =
   defaultConfig
-    { font = "JetBrainsMono Nerd Font 10",
+    { font = "JBMono Nerd Font 8",
       allDesktops = True,
       bgColor = "#000000",
       fgColor = "#ffffff",
@@ -35,8 +35,7 @@ config =
           Run $ Cpu ["-t", "\xf4bc <total>%"] 10,
           Run $ Date "%a %_d %b, %H:%M" "date" 10,
           Run $ Swap ["-t", "\xf0bcd <usedratio>%"] 10,
-          Run $ Com ".config/xmobar/scripts/taskwarrior.sh" [] "task" 30,
-          Run $ Com ".config/xmobar/scripts/khal.sh" [] "calendar" 30,
+          Run $ Com "taskwarrior rc.verbose: rc.report.next.columns:due.relative rc.report.next.labels:1 limit:1 next" [] "task" 30,
           Run $
             DynNetwork
               [ "--template",
