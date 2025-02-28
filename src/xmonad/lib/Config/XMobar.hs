@@ -23,7 +23,7 @@ myXmobarPP :: PP
 myXmobarPP =
   def
     { ppSep = grey "  \xf01d9  ",
-      ppCurrent = blue . wrap "" "" . xmobarBorder "Top" "#89b4fa" 3,
+      ppCurrent = blue . wrap "" "" . xmobarBorder "Top" "#7788AA" 3,
       -- , ppCurrent = blue
       ppHidden = grey,
       ppVisible = white,
@@ -43,6 +43,6 @@ myXmobarPP =
       --       )
     }
   where
-    grey = xmobarColor "#6c7086" ""
+    grey = xmobarColor "#191919" ""
     white = xmobarColor "#ffffff" ""
-    blue = xmobarColor "#89b4fa" ""
+    blue = xmobarColor "#7788AA" ""
