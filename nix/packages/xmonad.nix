@@ -1,8 +1,7 @@
 {
   mkDerivation,
   base,
-  containers,
-  lib,
+  process,
   X11,
   xmonad,
   xmonad-contrib,
@@ -16,10 +15,10 @@ mkDerivation {
   isExecutable = true;
   libraryHaskellDepends = [
     base
-    containers
     X11
     xmonad
     xmonad-contrib
+    process
   ];
   executableHaskellDepends = [base xmonad xmonad-contrib];
   description = "My XMonad setup";

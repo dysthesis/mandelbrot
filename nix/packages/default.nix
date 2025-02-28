@@ -41,22 +41,22 @@
           ++ mkFWith fWith;
       })
     );
-  addFontConfig = drv:
-    drv.overrideAttrs (oa: {
+  addFontConfig = drv: name:
+    drv.overrideAttrs (old: {
       buildInputs =
-        oa.buildInputs
+        old.buildInputs
         or []
         ++ [
           pkgs.makeWrapper
         ];
       installPhase =
-        oa.installPhase
+        old.installPhase
         + ''
-          wrapProgram $out/bin/xmobar \
+          wrapProgram $out/bin/${name}-configured \
             --prefix FONTCONFIG_FILE : ${pkgs.makeFontsConf {fontDirectories = [pkgs.nerd-fonts.jetbrains-mono];}}
         '';
     });
 in {
-  xmonad = addFontConfig xmonad;
-  xmobar = addFontConfig xmobar;
+  xmonad = addFontConfig xmonad "xmonad";
+  xmobar = addFontConfig xmobar "xmobar";
 }

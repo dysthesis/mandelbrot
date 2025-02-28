@@ -17,19 +17,20 @@ library
     Config.Scratchpads
     Config.Search
     Config.XMobar
-		Utils.Taskwarrior
+    Utils.Taskwarrior
   hs-source-dirs: lib
-  ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
+  ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
     , xmonad
     , xmonad-contrib
     , containers
     , X11
+    , process
   default-language: Haskell2010
 
 executable xmonad-configured
   main-is: xmonad.hs
-  ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
+  ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
     , xmonad
     , xmonad-contrib

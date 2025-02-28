@@ -9,7 +9,7 @@ cabal-version: >= 1.10
     
 executable xmobar-configured
   main-is: xmobar.hs
-  ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
+  ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
     , xmobar
   default-language: Haskell2010

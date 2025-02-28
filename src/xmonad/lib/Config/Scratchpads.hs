@@ -4,6 +4,7 @@ module Config.Scratchpads (myScratchpadKeybinds, myScratchpadManageHook) where
 
 import Data.Maybe (fromMaybe)
 import XMonad (X, className, (=?))
+import XMonad.Core (ManageHook)
 import XMonad.StackSet qualified as W
 import XMonad.Util.NamedScratchpad (NamedScratchpad (NS), customFloating, namedScratchpadAction, namedScratchpadManageHook)
 
@@ -121,4 +122,5 @@ myScratchpads =
 myScratchpadKeybinds :: [(String, X ())]
 myScratchpadKeybinds = map toScratchKeybinds scratchpadList
 
+myScratchpadManageHook :: ManageHook
 myScratchpadManageHook = namedScratchpadManageHook myScratchpads

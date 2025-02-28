@@ -4,12 +4,16 @@
 
 module Config.XMobar (xmobarProp) where
 
+import Graphics.X11.Types (Window)
 import XMonad (KeyMask, KeySym, Layout, XConfig (XConfig, modMask), xK_b)
-import XMonad.Hooks.DynamicLog (PP (ppSort), xmobarPP)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicSBs, statusBarProp, statusBarPropTo, withEasySB)
-import XMonad.Hooks.StatusBar.PP (PP (ppCurrent, ppExtras, ppHidden, ppLayout, ppOrder, ppOutput, ppSep, ppTitle, ppTitleSanitize, ppUrgent, ppVisible, ppVisibleNoWindows, ppWsSep), def, filterOutWsPP, shorten, wrap, xmobarBorder, xmobarColor, xmobarFont, xmobarStrip)
+import XMonad.Core (LayoutClass)
+import XMonad.Hooks.ManageDocks (AvoidStruts)
+import XMonad.Hooks.StatusBar (statusBarProp, withEasySB)
+import XMonad.Hooks.StatusBar.PP (PP (ppCurrent, ppHidden, ppSep, ppTitle, ppTitleSanitize, ppVisible, ppWsSep), def, filterOutWsPP, shorten, wrap, xmobarBorder, xmobarColor, xmobarStrip)
+import XMonad.Layout.LayoutModifier (ModifiedLayout)
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 
+xmobarProp :: (LayoutClass l Window) => XConfig l -> XConfig (ModifiedLayout AvoidStruts l)
 xmobarProp = withEasySB (statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobar.hs" (pure (filterOutWsPP [scratchpadWorkspaceTag] myXmobarPP))) toggleStrutsKey
   where
     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
