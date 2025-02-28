@@ -9,7 +9,7 @@
   srcDir,
 }:
 mkDerivation {
-  pname = "xmonadrc";
+  pname = "xmonad";
   version = "1.0";
   src = "${srcDir}/xmonad";
   isLibrary = true;
@@ -24,5 +24,5 @@ mkDerivation {
   executableHaskellDepends = [base xmonad xmonad-contrib];
   description = "My XMonad setup";
   license = lib.licenses.gpl2Only;
-  mainProgram = "xmonadrc";
+  mainProgram = "xmonad";
 }
