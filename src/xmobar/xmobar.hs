@@ -3,7 +3,7 @@ import Xmobar
 config :: Config
 config =
   defaultConfig
-    { font = "JBMono Nerd Font 8",
+    { font = "JBMono Nerd Font 9",
       allDesktops = True,
       bgColor = "#000000",
       fgColor = "#ffffff",
@@ -53,7 +53,7 @@ config =
               ]
               10
         ],
-      template = "  <icon=haskell_20.xpm/>  <fc=#6c7086>\xf01d9</fc>  %XMonadLog% } \xf133  %calendar%  <fc=#6c7086>\xf01d9</fc>  %date%  <fc=#6c7086>\xf01d9</fc>  \xf0ae  %task% { <fc=#cba6f7>%cpu%</fc>  <fc=#89b4fa>%memory%</fc>  <fc=#94e2d5>%disku%</fc>  <fc=#a6e3a1>%swap%</fc>  <fc=#fab387>%dynnetwork%</fc>  <fc=#6c7086>\xf01d9</fc> %YSSY%   ",
+      template = " %XMonadLog% } \xf133  %calendar%  <fc=#6c7086>\xf01d9</fc>  %date%  <fc=#6c7086>\xf01d9</fc>  \xf0ae  %task% { <fc=#cba6f7>%cpu%</fc>  <fc=#89b4fa>%memory%</fc>  <fc=#94e2d5>%disku%</fc>  <fc=#a6e3a1>%swap%</fc>  <fc=#fab387>%dynnetwork%</fc>  <fc=#6c7086>\xf01d9</fc> %YSSY%   ",
       alignSep = "}{"
     }
 
