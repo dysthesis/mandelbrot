@@ -52,7 +52,7 @@
       installPhase =
         oa.installPhase
         + ''
-          wrapProgram $out/bin/xmobar-app \
+          wrapProgram $out/bin/xmobar \
             --prefix FONTCONFIG_FILE : ${pkgs.makeFontsConf {fontDirectories = [pkgs.nerd-fonts.jetbrains-mono];}}
         '';
     });

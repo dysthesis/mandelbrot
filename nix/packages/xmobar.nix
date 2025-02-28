@@ -7,7 +7,7 @@
   srcDir,
 }:
 mkDerivation {
-  pname = "xmobar-app";
+  pname = "xmobar";
   version = "1.0";
   src = "${srcDir}/xmobar";
   isLibrary = false;
