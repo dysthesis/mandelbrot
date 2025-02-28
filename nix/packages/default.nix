@@ -5,7 +5,12 @@
     config = readFile ../../xmonad.hs;
 
     ghcWithPackages = haskellPackages.ghcWithPackages;
-    packages = self: [self.xmonad-contrib self.xmonad-extras];
+    packages = self:
+      with self; [
+        xmonad-contrib
+        xmonad-extras
+        xmobar
+      ];
     xmonadAndPackages = self: [self.xmonad] ++ packages self;
     xmonadEnv = ghcWithPackages xmonadAndPackages;
     libDir = ./../../lib;
