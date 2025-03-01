@@ -43,6 +43,6 @@ myXmobarPP =
       --       )
     }
   where
-    grey = xmobarColor "#191919" ""
+    grey = xmobarColor "#2A2A2A" ""
     white = xmobarColor "#ffffff" ""
     blue = xmobarColor "#7788AA" ""
