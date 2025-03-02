@@ -101,7 +101,7 @@ scratchpadList =
     Scratchpad
       { name = "notes",
         prefix = 'n',
-        category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/'")
+        category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/ direnv exec . nvim'")
       },
     Scratchpad
       { name = "signal",
