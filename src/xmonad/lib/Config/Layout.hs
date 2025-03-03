@@ -40,10 +40,9 @@ myTabConfig =
 myLayout =
   avoidStruts $
     mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ -- Add the option to toggle fullscreen (no gaps nor borders) on any layout
-    -- Add the option to toggle fullscreen (no gaps nor borders) on any layout
-      bsp -- Binary space partition (spiral, bspwm style)
-        ||| tiled -- Master and stack layout (vertical)
+      tiled -- Master and stack layout (vertical)
         ||| Mirror tiled -- Master and stack layout (horizontal)
+        ||| bsp -- Binary space partition (spiral, bspwm style)
         ||| monocle -- almost-fullscreen
         ||| threeCol -- three columns of window, one large one on the centre and two smaller ones on each side
         ||| tabs -- fullscreen with tabs
