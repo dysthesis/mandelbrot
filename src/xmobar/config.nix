@@ -15,7 +15,7 @@ in
           bgColor = "#000000",
           fgColor = "#ffffff",
           persistent = True,
-    	allDesktops = true,
+          allDesktops = True,
           iconRoot = "${./icons}",
           iconOffset = -1,
           position = BottomH 32,
