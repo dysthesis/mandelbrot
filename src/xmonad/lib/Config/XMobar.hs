@@ -35,8 +35,8 @@ myXmobarPP =
       ppLayout =
         white
           . ( \case
-                "Spacing Tabbed Tall" -> "<icon=tiled.xpm/>"
-                "Mirror Spacing Tabbed Tall" -> "<icon=mirrortiled.xpm/>"
+                "Tiled" -> "<icon=tiled.xpm/>"
+                "Mirror Tiled" -> "<icon=mirrortiled.xpm/>"
                 "Full" -> "<icon=full.xpm/>"
                 "monocle" -> "<icon=monocle.xpm/>"
                 "Spacing ThreeCol" -> "<icon=threecol.xpm/>"

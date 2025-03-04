@@ -50,16 +50,17 @@ myLayout =
     {-- Here are some custom layouts --}
     tabs = tabbed shrinkText myTabConfig
     tiled =
-      lessBorders Screen $
-        windowNavigation $ -- simplifies window navigation keybindings
-        -- simplifies window navigation keybindings
-          addTabs shrinkText myTabConfig $ -- add tabbed sublayout
-          -- add tabbed sublayout
-            boringWindows $ -- skips navigation for non-visible windws
-              Tall -- use the Tall layout as the base for this custom layout
-                nmaster -- define how many windows can be in the master stack
-                delta -- define how much the ratio of window sizes can be incremented each time
-                ratio -- define the initial ratio of window sizes
+      renamed [XLR.Replace "Tiled"] $
+        lessBorders Screen $
+          windowNavigation $ -- simplifies window navigation keybindings
+          -- simplifies window navigation keybindings
+            addTabs shrinkText myTabConfig $ -- add tabbed sublayout
+            -- add tabbed sublayout
+              boringWindows $ -- skips navigation for non-visible windws
+                Tall -- use the Tall layout as the base for this custom layout
+                  nmaster -- define how many windows can be in the master stack
+                  delta -- define how much the ratio of window sizes can be incremented each time
+                  ratio -- define the initial ratio of window sizes
     threeCol =
       lessBorders Screen $
         addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
