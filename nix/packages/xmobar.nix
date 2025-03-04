@@ -4,14 +4,7 @@
   extra,
   process,
   xmobar,
-  async,
   base,
-  containers,
-  directory,
-  filepath,
-  parsec,
-  unix,
-  X11,
   srcDir,
 }: let
   configFile = import "${srcDir}/xmobar/config.nix" {inherit pkgs;};
@@ -29,15 +22,10 @@ in
       xmobar
     ];
     executableHaskellDepends = [
-      async
-      xmobar
       base
-      containers
-      directory
-      filepath
-      parsec
-      unix
-      X11
+      extra
+      process
+      xmobar
     ];
     doHaddock = false;
     description = "My XMobar config";
