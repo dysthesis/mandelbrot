@@ -2,7 +2,7 @@ import Config.Autostart (myStartupHook)
 import Config.Keybinds (DefaultPrograms (..), myKeys)
 import Config.Layout (myLayout)
 import Config.ManageHook (myManageHook)
-import Config.XMobar (xmobarProp)
+import Config.XMobar (withStatusBars)
 import Utils.Taskwarrior (taskwarriorKeybinds)
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
@@ -60,4 +60,4 @@ main =
     . ewmhFullscreen
     . ewmh
     . fullscreenSupport
-    $ xmobarProp myConfig
+    $ withStatusBars myConfig

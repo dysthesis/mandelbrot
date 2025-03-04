@@ -22,69 +22,69 @@ import XMonad.Layout.WindowNavigation (windowNavigation)
 
 myTabConfig :: Theme
 myTabConfig =
-  def
-    { activeColor = "#C9D4FF",
-      activeBorderColor = "#C9D4FF",
-      activeTextColor = "#000000",
-      activeBorderWidth = 0,
-      inactiveColor = "#000000",
-      inactiveBorderColor = "#000000",
-      inactiveTextColor = "#ffffff",
-      inactiveBorderWidth = 2,
-      fontName = "xft:JetBrainsMono Nerd Font:size=10:antialias=true:hinting=true",
-      decoHeight = 14,
-      decoWidth = maxBound
-    }
+    def
+        { activeColor = "#C9D4FF"
+        , activeBorderColor = "#C9D4FF"
+        , activeTextColor = "#000000"
+        , activeBorderWidth = 0
+        , inactiveColor = "#000000"
+        , inactiveBorderColor = "#000000"
+        , inactiveTextColor = "#ffffff"
+        , inactiveBorderWidth = 2
+        , fontName = "xft:JetBrainsMono Nerd Font:size=10:antialias=true:hinting=true"
+        , decoHeight = 14
+        , decoWidth = maxBound
+        }
 
 -- Here, `mkToggle` (NBFULL ?? NOBORDERS ?? EOT) is used to enable fullscreen toggling.
 myLayout =
-  avoidStruts $
-    mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ -- Add the option to toggle fullscreen (no gaps nor borders) on any layout
-      tiled -- Master and stack layout (vertical)
-        ||| Mirror tiled -- Master and stack layout (horizontal)
-        ||| bsp -- Binary space partition (spiral, bspwm style)
-        ||| monocle -- almost-fullscreen
-        ||| threeCol -- three columns of window, one large one on the centre and two smaller ones on each side
-        ||| tabs -- fullscreen with tabs
+    avoidStruts $
+        mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ -- Add the option to toggle fullscreen (no gaps nor borders) on any layout
+            tiled -- Master and stack layout (vertical)
+                ||| Mirror tiled -- Master and stack layout (horizontal)
+                ||| bsp -- Binary space partition (spiral, bspwm style)
+                ||| monocle -- almost-fullscreen
+                ||| threeCol -- three columns of window, one large one on the centre and two smaller ones on each side
+                ||| tabs -- fullscreen with tabs
   where
     {-- Here are some custom layouts --}
     tabs = tabbed shrinkText myTabConfig
     tiled =
-      renamed [XLR.Replace "Tiled"] $
-        lessBorders Screen $
-          windowNavigation $ -- simplifies window navigation keybindings
-          -- simplifies window navigation keybindings
-            addTabs shrinkText myTabConfig $ -- add tabbed sublayout
-            -- add tabbed sublayout
-              boringWindows $ -- skips navigation for non-visible windws
-                Tall -- use the Tall layout as the base for this custom layout
-                  nmaster -- define how many windows can be in the master stack
-                  delta -- define how much the ratio of window sizes can be incremented each time
-                  ratio -- define the initial ratio of window sizes
+        renamed [XLR.Replace "Tiled"] $
+            lessBorders Screen $
+                windowNavigation $ -- simplifies window navigation keybindings
+                -- simplifies window navigation keybindings
+                    addTabs shrinkText myTabConfig $ -- add tabbed sublayout
+                    -- add tabbed sublayout
+                        boringWindows $ -- skips navigation for non-visible windws
+                            Tall -- use the Tall layout as the base for this custom layout
+                                nmaster -- define how many windows can be in the master stack
+                                delta -- define how much the ratio of window sizes can be incremented each time
+                                ratio -- define the initial ratio of window sizes
     threeCol =
-      lessBorders Screen $
-        addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
-        -- simplifies window navigation keybindings
-          boringWindows $ -- skips navigation for non-visible windws
-            ThreeColMid -- use the Tall layout as the base for this custom layout
-              nmaster -- define how many windows can be in the master stack
-              delta -- define how much the ratio of window sizes can be incremented each time
-              ratio -- define the initial ratio of window sizes
+        lessBorders Screen $
+            addTabs shrinkText myTabConfig $ -- simplifies window navigation keybindings
+            -- simplifies window navigation keybindings
+                boringWindows $ -- skips navigation for non-visible windws
+                    ThreeColMid -- use the Tall layout as the base for this custom layout
+                        nmaster -- define how many windows can be in the master stack
+                        delta -- define how much the ratio of window sizes can be incremented each time
+                        ratio -- define the initial ratio of window sizes
     bsp =
-      renamed [XLR.Replace "BSP"] $
-        lessBorders Screen $
-          windowNavigation $
-            addTabs shrinkText myTabConfig $
-              subLayout
-                []
-                tabs
-                emptyBSP
+        renamed [XLR.Replace "BSP"] $
+            lessBorders Screen $
+                windowNavigation $
+                    addTabs shrinkText myTabConfig $
+                        subLayout
+                            []
+                            tabs
+                            emptyBSP
     monocle =
-      renamed [Replace "monocle"] $
-        lessBorders Screen $
-          windowNavigation $
-            addTabs shrinkText myTabConfig $
-              subLayout [] (lessBorders Screen Simplest) Full
+        renamed [Replace "monocle"] $
+            lessBorders Screen $
+                windowNavigation $
+                    addTabs shrinkText myTabConfig $
+                        subLayout [] (lessBorders Screen Simplest) Full
 
     {-- and here are some general configurations for all of these layouts. --}
     nmaster = 1 -- Default number of windows in the master pane
@@ -97,25 +97,25 @@ switchToLayout = sendMessage . JumpToLayout
 
 myLayoutKeybinds :: [(String, X ())]
 myLayoutKeybinds =
-  [ ("M-S-a", sendMessage $ pullGroup L),
-    ("M-S-d", sendMessage $ pullGroup R),
-    ("M-S-w", sendMessage $ pullGroup U),
-    ("M-S-s", sendMessage $ pullGroup D),
-    ("M-S-u", withFocused (sendMessage . UnMerge)),
-    ("M-M1-h", sendMessage $ ExpandTowards L),
-    ("M-M1-l", sendMessage $ ShrinkFrom L),
-    ("M-M1-k", sendMessage $ ExpandTowards U),
-    ("M-M1-j", sendMessage $ ShrinkFrom U),
-    ("M-M1-C-h", sendMessage $ ShrinkFrom R),
-    ("M-M1-C-l", sendMessage $ ExpandTowards R),
-    ("M-M1-C-k", sendMessage $ ShrinkFrom D),
-    ("M-M1-C-j", sendMessage $ ExpandTowards D),
-    ("M-M1-S", sendMessage Swap),
-    ("M-M1-s", sendMessage Rotate),
-    ("M-; t", switchToLayout "Spacing Tabbed Tall"),
-    ("M-; w", switchToLayout "Mirror Spacing Tall"),
-    ("M-; f", switchToLayout "monocle"),
-    ("M-; 3", switchToLayout "Spacing ThreeCol"),
-    ("M-; a", switchToLayout "Tabbed Simplest"),
-    ("M-; b", switchToLayout "BSP")
-  ]
+    [ ("M-S-a", sendMessage $ pullGroup L)
+    , ("M-S-d", sendMessage $ pullGroup R)
+    , ("M-S-w", sendMessage $ pullGroup U)
+    , ("M-S-s", sendMessage $ pullGroup D)
+    , ("M-S-u", withFocused (sendMessage . UnMerge))
+    , ("M-M1-h", sendMessage $ ExpandTowards L)
+    , ("M-M1-l", sendMessage $ ShrinkFrom L)
+    , ("M-M1-k", sendMessage $ ExpandTowards U)
+    , ("M-M1-j", sendMessage $ ShrinkFrom U)
+    , ("M-M1-C-h", sendMessage $ ShrinkFrom R)
+    , ("M-M1-C-l", sendMessage $ ExpandTowards R)
+    , ("M-M1-C-k", sendMessage $ ShrinkFrom D)
+    , ("M-M1-C-j", sendMessage $ ExpandTowards D)
+    , ("M-M1-S", sendMessage Swap)
+    , ("M-M1-s", sendMessage Rotate)
+    , ("M-; t", switchToLayout "Spacing Tabbed Tall")
+    , ("M-; w", switchToLayout "Mirror Spacing Tall")
+    , ("M-; f", switchToLayout "monocle")
+    , ("M-; 3", switchToLayout "Spacing ThreeCol")
+    , ("M-; a", switchToLayout "Tabbed Simplest")
+    , ("M-; b", switchToLayout "BSP")
+    ]

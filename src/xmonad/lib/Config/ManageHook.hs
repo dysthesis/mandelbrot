@@ -26,7 +26,6 @@ myManageHook =
         className =? "error" --> doFloat,
         className =? "zen" --> doShift "1",
         className =? "FreeTube" --> doShift "4",
-        className =? "mpv" --> doShift "4",
         className =? "vesktop" --> doShift "3",
         className =? "Element" --> doShift "3",
         className =? "thunderbird" --> doShift "5",
