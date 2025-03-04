@@ -66,5 +66,5 @@ in
         }
 
     main :: IO ()
-    main = xmobar config -- or: configFromArgs config >>= xmobar
+    main = configFromArgs config >>= xmobar
   ''
