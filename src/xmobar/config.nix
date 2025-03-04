@@ -12,7 +12,6 @@ in
     config =
       defaultConfig
         { font = "JBMono Nerd Font 10",
-          allDesktops = True,
           bgColor = "#000000",
           fgColor = "#ffffff",
           persistent = True,
