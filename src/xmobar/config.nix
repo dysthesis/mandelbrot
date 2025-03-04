@@ -46,7 +46,7 @@ in
               Run $
                 DynNetwork
                   [ "--template",
-                    "\xf102 <tx>kB/s \xf103 <rx>kB/s",
+                    "\xf102 <tx><fc=#ffffff>kB/s</fc> \xf103 <rx><fc=#ffffff>kB/s</fc>",
                     "--Low",
                     "102400", -- units: B/s
                     "--High",
