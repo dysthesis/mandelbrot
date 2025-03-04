@@ -1,6 +1,8 @@
 {
   pkgs,
   mkDerivation,
+  extra,
+  process,
   xmobar,
   async,
   base,
@@ -20,7 +22,12 @@ in
     src = "${srcDir}/xmobar";
     isLibrary = false;
     isExecutable = true;
-
+    libraryHaskellDepends = [
+      base
+      extra
+      process
+      xmobar
+    ];
     executableHaskellDepends = [
       async
       xmobar

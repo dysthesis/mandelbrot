@@ -23,27 +23,27 @@ barSpawner = pure . xmobar
     xmobar (S screenId) = statusBarProp ("xmobar-configured -x " <> show screenId) $ pure (filterOutWsPP [scratchpadWorkspaceTag] pp)
     pp :: PP
     pp =
-      def
-        { ppSep = grey "  \xf01d9  ",
-          ppCurrent = blue . wrap "" "" . xmobarBorder "Top" "#7788AA" 3,
-          -- , ppCurrent = blue
-          ppHidden = grey,
-          ppVisible = white,
-          ppWsSep = "  ",
-          ppTitleSanitize = xmobarStrip . shorten 30, -- `shorten` defines the max length
-          ppTitle = wrap "\xf0570 " "",
-          ppLayout =
-            white
-              . ( \case
-                    "Tiled" -> "<icon=tiled.xpm/>"
-                    "Mirror Tiled" -> "<icon=mirrortiled.xpm/>"
-                    "Full" -> "<icon=full.xpm/>"
-                    "monocle" -> "<icon=monocle.xpm/>"
-                    "Spacing ThreeCol" -> "<icon=threecol.xpm/>"
-                    "Tabbed Simplest" -> "<icon=tabbed.xpm/>"
-                    "BSP" -> "<icon=bsp.xpm/>"
-                )
-        }
+        def
+            { ppSep = grey "  \xf01d9  "
+            , ppCurrent = blue . wrap "" "" . xmobarBorder "Top" "#7788AA" 3
+            , -- , ppCurrent = blue
+              ppHidden = grey
+            , ppVisible = white
+            , ppWsSep = "  "
+            , ppTitleSanitize = xmobarStrip . shorten 30 -- `shorten` defines the max length
+            , ppTitle = wrap "\xf0570 " ""
+            , ppLayout =
+                white
+                    . ( \case
+                            "Tiled" -> "<icon=tiled.xpm/>"
+                            "Mirror Tiled" -> "<icon=mirrortiled.xpm/>"
+                            "Full" -> "<icon=full.xpm/>"
+                            "monocle" -> "<icon=monocle.xpm/>"
+                            "Spacing ThreeCol" -> "<icon=threecol.xpm/>"
+                            "Tabbed Simplest" -> "<icon=tabbed.xpm/>"
+                            "BSP" -> "<icon=bsp.xpm/>"
+                      )
+            }
       where
         grey = xmobarColor "#2A2A2A" ""
         white = xmobarColor "#ffffff" ""
