@@ -20,7 +20,7 @@ in
           iconOffset = -1,
           position = BottomH 32,
           commands =
-            [ Run XPropertyLog "_XMONAD_LOG",
+            [ Run XMonadLog,
               Run $
                 WeatherX
                   "YSSY"
