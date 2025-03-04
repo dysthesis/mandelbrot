@@ -7,10 +7,95 @@ category:      Graphics
 build-type:    Simple
 cabal-version: >= 1.10
     
+flag with_xrender
+  description: Use XRender for alpha background pseudo-transparency.
+  default: True
+
+flag with_inotify
+  description: inotify support (modern Linux only). Required for the Mail and MBox plugins.
+  default: False
+
+flag with_iwlib
+  description: Wireless info support via Wext ioctls (deprecated). Required for the Wireless plugin, needs iwlib installed.
+  default: False
+
+flag with_nl80211
+  description: Wireless info support via nl80211. Required for the Wireless plugin on systems running Linux, the kernel.
+  default: False
+
+flag with_mpd
+  description: MPD support. Needs libmpd installed.
+  default: False
+
+flag all_extensions
+  description: Includes all optional extensions.
+  default: False
+
+flag with_alsa
+  description: Use alsa-mixer to get the volume from soundcards.
+  default: False
+
+flag with_datezone
+  description: Enables localized date support.
+  default: False
+
+flag with_mpris
+  description: MPRIS v1, v2 support.
+  default: False
+
+flag with_dbus
+  description: Publish a service on the session bus for controlling xmobar.
+  default: False
+
+flag with_xpm
+  description: Enable usage of xpm for icons.
+  default: False
+
+flag with_threaded
+  description: Use threaded runtime. Required for timer coalescing (less power usage).
+  default: False
+
+flag with_rtsopts
+  description: Use -with-rtsopts=-V0 to reduce wakeups.
+  default: True
+
+flag with_shared
+  description: Use shared libraries. Required when dependencies are built as shared libraries.
+  default: False
+
+flag with_weather
+  description: Enable weather plugin.
+  default: True
+
+flag with_uvmeter
+  description: UVMeter only useful to australians.
+  default: False
+
+flag with_kraken
+  description: Enable Kraken plugin.
+  default: False
+
 executable xmobar-configured
   main-is: xmobar.hs
   ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
-  build-depends: base
-    , xmobar
-    , text
+  build-depends:      
+	  X11,
+    async,
+    base,
+    containers,
+    directory,
+    filepath,
+    parsec,
+    unix,
+    xmobar
+
+  ghc-options: -funbox-strict-fields -Wall -fno-warn-unused-do-bind
+
+  if flag(with_rtsopts)
+     ghc-options: -with-rtsopts=-V0
+
+  if flag(with_threaded)
+     ghc-options: -threaded
+     cpp-options: -DTHREADED_RUNTIME
+
   default-language: Haskell2010
