@@ -1,9 +1,9 @@
+{-# OPTIONS_GHC -Wno-missing-signatures #-}
 import Config.Autostart (myStartupHook)
 import Config.Keybinds (DefaultPrograms (..), myKeys)
 import Config.Layout (myLayout)
 import Config.ManageHook (myManageHook)
 import Config.XMobar (withStatusBars)
-import Utils.Taskwarrior (taskwarriorKeybinds)
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.ManageDocks (docks)
@@ -35,7 +35,16 @@ defaultPrograms =
         , screenshot = "flameshot gui"
         }
 
-myHandleEventHook = windowedFullscreenFixEventHook <> swallowEventHook (className =? "st-256color" <||> className =? "Alacritty") (return True)
+myHandleEventHook = windowedFullscreenFixEventHook <> swallowHook (return True)
+  where
+    swallowClasses :: [String]
+    swallowClasses =
+        [ "ghostty"
+        , "com.mitchellh.ghostty"
+        , "st-256color"
+        , "Alacritty"
+        ]
+    swallowHook = swallowEventHook $ foldr (<||>) (pure False) (map (className =?) swallowClasses)
 
 myConfig =
     def

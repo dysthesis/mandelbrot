@@ -10,14 +10,22 @@
     buildFromSdist
     overrideCabal
     ;
+  ghcOptions = [
+    "O2"
+    "Wall"
+  ];
+  mkGhcOptions = map (opt: "--ghc-options=-${opt}");
   srcDir = ../../src;
-  xmonad = buildFromSdist (callPackage ./xmonad.nix {inherit srcDir;});
+  # xmonad = buildFromSdist (callPackage ./xmonad.nix {inherit srcDir;});
+  xmonad = buildFromSdist (
+    overrideCabal (callPackage ./xmonad.nix {inherit srcDir;})
+    (old: {
+      configureFlags =
+        (old.configureFlags or [])
+        ++ mkGhcOptions ghcOptions;
+    })
+  );
   xmobar = let
-    ghcOptions = [
-      "O2"
-      "Wall"
-    ];
-    mkGhcOptions = map (opt: "--ghc-options=-${opt}");
     fWith = [
       "alsa"
       "conduit"

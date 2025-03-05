@@ -1,7 +1,6 @@
 module Config.Autostart (myStartupHook) where
 
 import XMonad (X)
-import XMonad.Core (spawn)
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 myStartupHook :: X ()

@@ -27,7 +27,7 @@ scratchpad ::
     String -> -- Command to spawn
     String -> -- Resulting window class (for XMonad to find and manage)
     NamedScratchpad
-scratchpad name cmd windowClass = NS name cmd find manage
+scratchpad name' cmd windowClass = NS name' cmd find manage
   where
     find = className =? windowClass
 
@@ -48,16 +48,16 @@ termScratchpad ::
     Maybe String -> -- Scratchpad class
     NamedScratchpad
 termScratchpad
-    name
+    name'
     cmd
-    windowClass = scratchpad name command cName
+    windowClass = scratchpad name' command cName
       where
         command = "st -c " ++ cName ++ verb -- Use `st` as our terminal
           where
             verb = case cmd of
                 Just x -> " -e " ++ x -- If `cmd` exists, add an argument to spawn it inside the terminal
                 Nothing -> ""
-        cName = fromMaybe name windowClass -- If windowClass is Nothing, use the scratchpad name instead as the class
+        cName = fromMaybe name' windowClass -- If windowClass is Nothing, use the scratchpad name instead as the class
 
 toScratchpad :: Scratchpad -> NamedScratchpad
 toScratchpad s =

@@ -1,16 +1,15 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 
 module Config.XMobar (withStatusBars) where
 
 import Graphics.X11.Types (Window)
-import XMonad (KeyMask, KeySym, Layout, XConfig (XConfig, modMask), xK_b)
+import XMonad(XConfig)
 import XMonad.Core (LayoutClass, ScreenId (S))
-import XMonad.Hooks.ManageDocks (AvoidStruts)
 import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicSBs, statusBarProp)
 import XMonad.Hooks.StatusBar.PP (PP (ppCurrent, ppHidden, ppLayout, ppSep, ppTitle, ppTitleSanitize, ppVisible, ppWsSep), def, filterOutWsPP, shorten, wrap, xmobarBorder, xmobarColor, xmobarStrip)
-import XMonad.Layout.LayoutModifier (ModifiedLayout)
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 
 withStatusBars :: (LayoutClass l Window) => XConfig l -> XConfig l
@@ -42,6 +41,7 @@ barSpawner = pure . xmobar
                             "Spacing ThreeCol" -> "<icon=threecol.xpm/>"
                             "Tabbed Simplest" -> "<icon=tabbed.xpm/>"
                             "BSP" -> "<icon=bsp.xpm/>"
+                            other -> other
                       )
             }
       where

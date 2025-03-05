@@ -1,4 +1,5 @@
 {-# LANGUAGE ImportQualifiedPost #-}
+{-# OPTIONS_GHC -Wno-missing-signatures #-}
 
 module Config.Layout (myLayout, myLayoutKeybinds) where
 

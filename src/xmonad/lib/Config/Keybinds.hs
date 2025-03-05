@@ -40,6 +40,7 @@ myKeys defaults =
         ++ myScratchpadKeybinds
         ++ taskwarriorKeybinds
   where
+    audioDelta :: Integer
     audioDelta = 5 -- configures how much each command should change the volume by
     increaseVolCmd = "wpctl set-volume @DEFAULT_AUDIO_SINK@ " ++ show audioDelta ++ "%+"
     decreaseVolCmd = "wpctl set-volume @DEFAULT_AUDIO_SINK@ " ++ show audioDelta ++ "%-"
