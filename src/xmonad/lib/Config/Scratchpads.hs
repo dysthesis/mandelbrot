@@ -48,7 +48,6 @@ termScratchpad ::
     Maybe String -> -- Scratchpad class
     NamedScratchpad
 termScratchpad
-<<<<<<< HEAD
   name
   cmd
   windowClass = scratchpad name command cName
