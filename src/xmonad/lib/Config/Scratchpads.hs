@@ -9,24 +9,24 @@ import XMonad.StackSet qualified as W
 import XMonad.Util.NamedScratchpad (NamedScratchpad (NS), customFloating, namedScratchpadAction, namedScratchpadManageHook)
 
 data ScratchpadType
-  = Term -- Terminal scratchpads
-      (Maybe String) -- Command
-  | Gui -- GUI Scratchpads
-      String -- Class
-      String -- Command
+    = Term -- Terminal scratchpads
+        (Maybe String) -- Command
+    | Gui -- GUI Scratchpads
+        String -- Class
+        String -- Command
 
 data Scratchpad = Scratchpad
-  { name :: String,
-    prefix :: Char,
-    category :: ScratchpadType
-  }
+    { name :: String
+    , prefix :: Char
+    , category :: ScratchpadType
+    }
 
 -- Generic function to generate NamedScratchpad given a name, command, and class
 scratchpad ::
-  String -> -- Scratchpad name (to define keybind)
-  String -> -- Command to spawn
-  String -> -- Resulting window class (for XMonad to find and manage)
-  NamedScratchpad
+    String -> -- Scratchpad name (to define keybind)
+    String -> -- Command to spawn
+    String -> -- Resulting window class (for XMonad to find and manage)
+    NamedScratchpad
 scratchpad name cmd windowClass = NS name cmd find manage
   where
     find = className =? windowClass
@@ -43,11 +43,12 @@ scratchpad name cmd windowClass = NS name cmd find manage
 -- Leave `cmd` empty (Nothing) to spawn a blank terminal
 -- Leave `class` empty (Nothing) to set the class to be the same as the name
 termScratchpad ::
-  String -> -- Scratchpad name
-  Maybe String -> -- Scratchpad command
-  Maybe String -> -- Scratchpad class
-  NamedScratchpad
+    String -> -- Scratchpad name
+    Maybe String -> -- Scratchpad command
+    Maybe String -> -- Scratchpad class
+    NamedScratchpad
 termScratchpad
+<<<<<<< HEAD
   name
   cmd
   windowClass = scratchpad name command cName
@@ -61,58 +62,58 @@ termScratchpad
 
 toScratchpad :: Scratchpad -> NamedScratchpad
 toScratchpad s =
-  case category s of
-    Term command -> termScratchpad (name s) command Nothing
-    Gui cName command -> scratchpad (name s) command cName
+    case category s of
+        Term command -> termScratchpad (name s) command Nothing
+        Gui cName command -> scratchpad (name s) command cName
 
 toScratchKeybinds :: Scratchpad -> (String, X ())
 toScratchKeybinds s =
-  (cmd <> " " <> [prefix s], namedScratchpadAction myScratchpads (name s))
+    (cmd <> " " <> [prefix s], namedScratchpadAction myScratchpads (name s))
   where
     cmd = "M-s" -- Key prefix for scratchpads
 
 scratchpadList :: [Scratchpad]
 scratchpadList =
-  [ Scratchpad
-      { name = "terminal",
-        prefix = 't',
-        category = Term Nothing
-      },
-    Scratchpad
-      { name = "btop",
-        prefix = 'b',
-        category = Term (Just "btop")
-      },
-    Scratchpad
-      { name = "irc",
-        prefix = 'i',
-        category = Term (Just "weechat")
-      },
-    Scratchpad
-      { name = "task",
-        prefix = 'd',
-        category = Term (Just "taskwarrior-tui")
-      },
-    Scratchpad
-      { name = "music",
-        prefix = 'm',
-        category = Term (Just "spotify_player")
-      },
-    Scratchpad
-      { name = "notes",
-        prefix = 'n',
-        category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/'")
-      },
-    Scratchpad
-      { name = "signal",
-        prefix = 's',
-        category = Gui "Signal" "signal-desktop"
-      }
-  ]
+    [ Scratchpad
+        { name = "terminal"
+        , prefix = 't'
+        , category = Term Nothing
+        }
+    , Scratchpad
+        { name = "btop"
+        , prefix = 'b'
+        , category = Term (Just "btop")
+        }
+    , Scratchpad
+        { name = "irc"
+        , prefix = 'i'
+        , category = Term (Just "weechat")
+        }
+    , Scratchpad
+        { name = "task"
+        , prefix = 'd'
+        , category = Term (Just "taskwarrior-tui")
+        }
+    , Scratchpad
+        { name = "music"
+        , prefix = 'm'
+        , category = Term (Just "spotify_player")
+        }
+    , Scratchpad
+        { name = "notes"
+        , prefix = 'n'
+        , category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/ direnv exec . nvim'")
+        }
+    , Scratchpad
+        { name = "signal"
+        , prefix = 's'
+        , category = Gui "Signal" "signal-desktop"
+        }
+    ]
 
 myScratchpads :: [NamedScratchpad]
 myScratchpads =
-  map toScratchpad scratchpadList
+    map toScratchpad scratchpadList
 
 myScratchpadKeybinds :: [(String, X ())]
 myScratchpadKeybinds = map toScratchKeybinds scratchpadList

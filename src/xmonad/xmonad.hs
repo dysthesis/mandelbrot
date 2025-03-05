@@ -2,7 +2,7 @@ import Config.Autostart (myStartupHook)
 import Config.Keybinds (DefaultPrograms (..), myKeys)
 import Config.Layout (myLayout)
 import Config.ManageHook (myManageHook)
-import Config.XMobar (xmobarProp)
+import Config.XMobar (withStatusBars)
 import Utils.Taskwarrior (taskwarriorKeybinds)
 import XMonad
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
@@ -38,26 +38,26 @@ defaultPrograms =
 myHandleEventHook = windowedFullscreenFixEventHook <> swallowEventHook (className =? "st-256color" <||> className =? "Alacritty") (return True)
 
 myConfig =
-  def
-    { modMask = myModMask,
-      terminal = term defaultPrograms,
-      borderWidth = myBorderWidth,
-      normalBorderColor = myNormColor,
-      focusedBorderColor = myFocusColor,
-      layoutHook = myLayout,
-      -- , workspaces = myWorkspaces
-      startupHook = myStartupHook,
-      manageHook = myManageHook,
-      handleEventHook = myHandleEventHook
-    }
-    `additionalKeysP` myKeys defaultPrograms
+    def
+        { modMask = myModMask
+        , terminal = term defaultPrograms
+        , borderWidth = myBorderWidth
+        , normalBorderColor = myNormColor
+        , focusedBorderColor = myFocusColor
+        , layoutHook = myLayout
+        , -- , workspaces = myWorkspaces
+          startupHook = myStartupHook
+        , manageHook = myManageHook
+        , handleEventHook = myHandleEventHook
+        }
+        `additionalKeysP` myKeys defaultPrograms
 
 main :: IO ()
 main =
-  do
-    xmonad
-    . docks
-    . ewmhFullscreen
-    . ewmh
-    . fullscreenSupport
-    $ xmobarProp myConfig
+    do
+        xmonad
+        . docks
+        . ewmhFullscreen
+        . ewmh
+        . fullscreenSupport
+        $ withStatusBars myConfig

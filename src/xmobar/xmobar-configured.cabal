@@ -6,11 +6,22 @@ maintainer:    Dysthesis <antheoraviel@protonmail.com>
 category:      Graphics
 build-type:    Simple
 cabal-version: >= 1.10
-    
+
+library xmobar-lib
+  exposed-modules:
+    Xmobar.Config
+  hs-source-dirs: lib
+  ghc-options: -Wall -Werror -with-rtsopts=-V0 -threaded
+  build-depends: base >= 4.7
+    , xmobar
+    , process
+    , extra
+  default-language: Haskell2010
+
 executable xmobar-configured
   main-is: xmobar.hs
-  ghc-options: -Werror -rtsopts -with-rtsopts=-V0 -threaded
+  ghc-options: -Wall -Werror -rtsopts -with-rtsopts=-V0 -threaded
   build-depends: base
     , xmobar
-    , text
+    , xmobar-lib
   default-language: Haskell2010

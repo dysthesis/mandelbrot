@@ -38,7 +38,7 @@
     mkFWith = map (opt: "-fwith_${opt}");
   in
     buildFromSdist (
-      overrideCabal (callPackage ./xmobar.nix {inherit srcDir;})
+      overrideCabal (callPackage ./xmobar.nix {inherit srcDir pkgs;})
       (old: {
         configureFlags =
           (old.configureFlags or [])
