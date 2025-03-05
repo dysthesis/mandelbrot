@@ -48,16 +48,16 @@ termScratchpad ::
     Maybe String -> -- Scratchpad class
     NamedScratchpad
 termScratchpad
-    name'
-    cmd
-    windowClass = scratchpad name' command cName
-      where
-        command = "st -c " ++ cName ++ verb -- Use `st` as our terminal
-          where
-            verb = case cmd of
-                Just x -> " -e " ++ x -- If `cmd` exists, add an argument to spawn it inside the terminal
-                Nothing -> ""
-        cName = fromMaybe name' windowClass -- If windowClass is Nothing, use the scratchpad name instead as the class
+  name'
+  cmd
+  windowClass = scratchpad name' command cName
+    where
+      command = "ghostty --class=" ++ cName ++ verb -- Use `st` as our terminal
+        where
+          verb = case cmd of
+            Just x -> " -e " ++ x -- If `cmd` exists, add an argument to spawn it inside the terminal
+            Nothing -> ""
+      cName = "ghostty." ++ (fromMaybe name' windowClass) -- If windowClass is Nothing, use the scratchpad name instead as the class
 
 toScratchpad :: Scratchpad -> NamedScratchpad
 toScratchpad s =
@@ -101,7 +101,7 @@ scratchpadList =
     , Scratchpad
         { name = "notes"
         , prefix = 'n'
-        , category = Term (Just "sh -c 'tmux new-session -As Notes -c ~/Documents/Notes/Contents/ direnv exec . nvim'")
+        , category = Term (Just "'tmux new-session -As Notes -c ~/Documents/Notes/Contents/ direnv exec . nvim'")
         }
     , Scratchpad
         { name = "signal"

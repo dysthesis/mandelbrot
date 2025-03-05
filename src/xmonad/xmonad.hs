@@ -28,12 +28,12 @@ myFocusColor = "#FFFFFF"
 
 defaultPrograms :: DefaultPrograms
 defaultPrograms =
-    DefaultPrograms
-        { term = "st"
-        , launcher = "dmenu_run"
-        , editor = "nvim"
-        , screenshot = "flameshot gui"
-        }
+  DefaultPrograms
+    { term = "ghostty",
+      launcher = "dmenu_run",
+      editor = "nvim",
+      screenshot = "flameshot gui"
+    }
 
 myHandleEventHook = windowedFullscreenFixEventHook <> swallowHook (return True)
   where
