@@ -52,12 +52,12 @@ termScratchpad
   cmd
   windowClass = scratchpad name command cName
     where
-      command = "ghostty -c ghostty." ++ cName ++ verb -- Use `st` as our terminal
+      command = "ghostty -c " ++ cName ++ verb -- Use `st` as our terminal
         where
           verb = case cmd of
             Just x -> " -e " ++ x -- If `cmd` exists, add an argument to spawn it inside the terminal
             Nothing -> ""
-      cName = fromMaybe name windowClass -- If windowClass is Nothing, use the scratchpad name instead as the class
+      cName = "ghostty." ++ (fromMaybe name windowClass) -- If windowClass is Nothing, use the scratchpad name instead as the class
 
 toScratchpad :: Scratchpad -> NamedScratchpad
 toScratchpad s =
