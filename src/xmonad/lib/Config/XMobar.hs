@@ -6,7 +6,7 @@
 module Config.XMobar (withStatusBars) where
 
 import Graphics.X11.Types (Window)
-import XMonad(XConfig)
+import XMonad(XConfig, X)
 import XMonad.Core (LayoutClass, ScreenId (S))
 import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicSBs, statusBarProp)
 import XMonad.Hooks.StatusBar.PP (PP (ppCurrent, ppHidden, ppLayout, ppSep, ppTitle, ppTitleSanitize, ppVisible, ppWsSep), def, filterOutWsPP, shorten, wrap, xmobarBorder, xmobarColor, xmobarStrip)
@@ -15,7 +15,7 @@ import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 withStatusBars :: (LayoutClass l Window) => XConfig l -> XConfig l
 withStatusBars = dynamicSBs barSpawner
 
-barSpawner :: ScreenId -> IO StatusBarConfig
+barSpawner :: ScreenId -> X StatusBarConfig
 barSpawner = pure . xmobar
   where
     xmobar :: ScreenId -> StatusBarConfig
