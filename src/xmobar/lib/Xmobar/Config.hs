@@ -7,7 +7,7 @@ import Xmobar
 mkConfig :: String -> Config
 mkConfig icon =
     defaultConfig
-        { font = "JBMono Nerd Font 10"
+        { font = "JBMono Nerd Font 8"
         , bgColor = "#000000"
         , fgColor = "#ffffff"
         , lowerOnStart = True -- send to bottom of window stack on start
@@ -18,7 +18,7 @@ mkConfig icon =
         , persistent = True -- enable/disable hiding (True = disabled)
         , iconRoot = icon
         , iconOffset = -1
-        , position = BottomH 32
+        , position = BottomH 24
         , commands =
             [ Run XMonadLog
             , Run $
