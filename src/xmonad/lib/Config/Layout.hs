@@ -24,8 +24,7 @@ import XMonad.Layout.WindowNavigation (windowNavigation)
 myTabConfig :: Theme
 myTabConfig =
     def
-        { activeColor = "#C9D4FF"
-        , activeBorderColor = "#C9D4FF"
+        { activeColor = "#C9D4FF" , activeBorderColor = "#C9D4FF"
         , activeTextColor = "#000000"
         , activeBorderWidth = 0
         , inactiveColor = "#000000"
