@@ -29,7 +29,7 @@ myFocusColor = "#FFFFFF"
 defaultPrograms :: DefaultPrograms
 defaultPrograms =
   DefaultPrograms
-    { term = "ghostty",
+    { term = "st",
       launcher = "dmenu_run",
       editor = "nvim",
       screenshot = "flameshot gui"

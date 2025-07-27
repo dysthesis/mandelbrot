@@ -52,7 +52,7 @@ termScratchpad
   cmd
   windowClass = scratchpad name' command cName
     where
-      command = "ghostty --class=" ++ cName ++ verb -- Use `st` as our terminal
+      command = "st -c" ++ cName ++ verb -- Use `st` as our terminal
         where
           verb = case cmd of
             Just x -> " -e " ++ x -- If `cmd` exists, add an argument to spawn it inside the terminal
